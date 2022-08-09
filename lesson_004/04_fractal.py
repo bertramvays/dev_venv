@@ -2,6 +2,9 @@
 
 import simple_draw as sd
 
+sd.resolution = (1000, 700)
+
+
 # 1) Написать функцию draw_branches, которая должна рисовать две ветви дерева из начальной точки
 # Функция должна принимать параметры:
 # - точка начала рисования,
@@ -33,32 +36,27 @@ import simple_draw as sd
 #     v2.draw()
 #     return v1.end_point, v2.end_point
 
-# def draw_branches(point, length, angle=30):
+# def draw_branches(point, angle, length, width):
 #     if length < 10:
 #         return
 #     else:
-#         v1 = sd.get_vector(start_point=point, angle=angle, length=length, width=1)
-#         v2 = sd.get_vector(start_point=point, angle=180-angle, length=length, width=1)
-#         v1.draw()
-#         v2.draw()
-#         draw_branches(v1.end_point, length * .75, angle)
-#         draw_branches(v2.end_point, length * .75, 180 - angle)
+#         v0 = sd.Vector(point, angle, length, width)
+#         v0.draw()
+#         draw_branches(v0.end_point, angle - 30, length * 0.8, width)
+#         draw_branches(v0.end_point, angle + 30, length * 0.8, width)
 
-def draw_branches(point, length, angle):
-    if length < 10:
+def draw_branches(point, angle, length, width):
+    if length < 5:
         return
     else:
-        v1 = sd.get_vector(start_point=point, angle=angle, length=length, width=1)
-        v2 = sd.get_vector(start_point=point, angle=180-angle, length=length, width=1)
-        v1.draw()
-        v2.draw()
-        length_koef = (sd.random_number(int(75 - 75*.2), int(75 + 75*.2))) / 100  # получает рандомную длину в диапазоне 20 % от коэффициэнта 0,75
-        angle = sd.random_number(int(30 - 30 * .4), int(30 + 30 * .4))
-        draw_branches(v1.end_point, length * length_koef, angle)
-        draw_branches(v2.end_point, length * length_koef, 180 - angle)
+        v0 = sd.Vector(point, angle, length, width)
+        v0.draw()
+        draw_branches(v0.end_point, angle - sd.random_number(18, 42), length * sd.random_number(60, 90) / 100, width)
+        draw_branches(v0.end_point, angle + sd.random_number(18, 42), length * sd.random_number(60, 90) / 100, width)
+
 
 point_0 = sd.get_point(300, 30)
-draw_branches(point_0, 150, 30)
+draw_branches(point_0, 90, 100, 2)
 # 4) Усложненное задание (делать по желанию)
 # - сделать рандомное отклонение угла ветвей в пределах 40% от 30-ти градусов
 # - сделать рандомное отклонение длины ветвей в пределах 20% от коэффициента 0.75
@@ -68,5 +66,3 @@ draw_branches(point_0, 150, 30)
 # sd.random_number()
 
 sd.pause()
-
-
