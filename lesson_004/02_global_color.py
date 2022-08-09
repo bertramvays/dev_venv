@@ -11,7 +11,7 @@ import simple_draw as sd
 # sd.get_point()
 # sd.line()
 # sd.get_vector()
-# и константы COLOR_RED, COLOR_ORANGE, COLOR_YELLOW, COLOR_GREEN, COLOR_CYAN, COLOR_BLUE, COLOR_PURPLE
+# # и константы COLOR_RED, COLOR_ORANGE, COLOR_YELLOW, COLOR_GREEN, COLOR_CYAN, COLOR_BLUE, COLOR_PURPLE
 # Результат решения см lesson_004/results/exercise_02_global_color.jpg
 
 
@@ -56,17 +56,19 @@ def fifthka(point, angle, length):
 def shystka(point, angle, length):
     n_angle_figure(point, angle, length, num_of_angles=6)
 
-point_0 = sd.get_point(50, 50)
-triangle(point_0, 30, 100)
+# point_0 = sd.get_point(50, 50)
+# triangle(point_0, 30, 100)
+#
+# point_0 = sd.get_point(200, 50)
+# square(point_0, 0, 100)
+#
+# point_0 = sd.get_point(50, 200)
+# fifthka(point_0, 0, 100)
+#
+# point_0 = sd.get_point(250, 200)
+# shystka(point_0, 0, 100)
+#
+#
+# sd.pause()
 
-point_0 = sd.get_point(200, 50)
-square(point_0, 0, 100)
-
-point_0 = sd.get_point(50, 200)
-fifthka(point_0, 0, 100)
-
-point_0 = sd.get_point(250, 200)
-shystka(point_0, 0, 100)
-
-
-sd.pause()
+print(sd.random_number(int(30 - 30 *.4), int(30 + 30 *.4)))
