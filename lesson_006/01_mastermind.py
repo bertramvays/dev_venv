@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from termcolor import colored, cprint
+
 import mastermind_engine as m_eng
 
 # Игра «Быки и коровы»
@@ -43,29 +45,28 @@ import mastermind_engine as m_eng
 # Движок игры реализует только саму функциональность игры.
 # Это пример применения SOLID принципа (см https://goo.gl/GFMoaI) в архитектуре программ.
 # Точнее, в этом случае важен принцип единственной ответственности - https://goo.gl/rYb3hT
-#TODO не работает не коректный ввод.
-#TODO расскрасить вывод termcolor
+
 
 while True:
     NN = m_eng.riddle_number()
-    print("Компьтер загадал число. Попробуйте его отгадать.", NN)
+    cprint("Компьтер загадал число. Попробуйте его отгадать.", color='green')
     moves_count = 0
     while True:
-        user_num = input("Ваш вариант числа: ")
+        user_num = input(colored("Ваш вариант числа: ", color='blue'))
         moves_count += 1
-        if not user_num.isdigit() and user_num.startswith('0'):
-            print("Простите но вы ввели некоректное число. Повторите ввод(число не должно начинаться на 0)")
+        if not user_num.isdigit() or user_num.startswith('0') or len(user_num) != 4:
+            cprint("Простите но вы ввели некоректное число. Повторите ввод(4-х значное число не должно начинаться на 0)",
+                   color='red')
             continue
         else:
             result = m_eng.check_number(user_num)
             if result['bulls'] == 4:
                 break
             else:
-                print(f'Ваше число - {user_num}, результат - {result}')
-    print(f'Поздравляем вы угадали! Загаданное число {NN}, вы совершили {moves_count} попыток.')
-    bis_game_choice = input('Хотите еще партию? Если нет, введите "нет" или "no" ')
+                cprint(f'Ваше число - {user_num}, результат - {result}', color='magenta')
+    cprint(f'Поздравляем вы угадали! Загаданное число {NN}, вы совершили {moves_count} попыток.',
+           on_color='on_red')
+    bis_game_choice = input(colored('Хотите еще партию? Если нет, введите "нет" или "no" ', on_color='on_yellow'))
     if bis_game_choice.lower() == 'нет' or bis_game_choice.lower() == 'no':
-        print('Спасибо за игру!')
+        cprint('Спасибо за игру!', color='cyan')
         break
-
-
